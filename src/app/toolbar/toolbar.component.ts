@@ -1,19 +1,20 @@
-import {Component, Input, Renderer2} from '@angular/core';
-import {AppComponent} from "../app.component";
+import { Component, Input, Renderer2 } from '@angular/core';
+import { AppComponent } from '../app.component';
+import { FormBuilder } from '@angular/forms';
 
-// let body = document.getElementById('mainBody');
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.css']
+  styleUrls: ['./toolbar.component.css'],
 })
 export class ToolbarComponent {
-  @Input() title = "";
+  @Input() title = '';
   // constructor(private renderer: Renderer2) { }
   imagePath = 'assets/icons/sun.svg';
   darkMode = false;
   profileOpen = false;
+  searchQuery = '';
   body = document.getElementById('mainBody');
   account = document.getElementsByClassName('account');
 
@@ -29,18 +30,15 @@ export class ToolbarComponent {
       this.body.classList.remove('dark');
     }
   }
+
   profileClicked() {
     this.profileOpen = !this.profileOpen;
     for (let i = 0; i < this.account.length; i++) {
       this.account[i].classList.toggle('visible');
-      // if (this.profileOpen) {
-      //   // @ts-ignore
-      //   this.account[i].classList.add('visible');
-      // } else {
-      //   // @ts-ignore
-      //   this.account[i].classList.remove('visible');
-      // }
     }
   }
-}
 
+  searchProduct() {
+    alert(this.searchQuery);
+  }
+}

@@ -10,6 +10,7 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { ProductsComponent } from './products/products.component';
 import {RouterLink, RouterModule, RouterOutlet} from "@angular/router";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -27,11 +28,12 @@ import {RouterLink, RouterModule, RouterOutlet} from "@angular/router";
     RouterOutlet,
     RouterLink,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
-      { path: 'log-in', component: LogInComponent },
-      { path: 'products', component: ProductsComponent },
-      { path: 'products/:productId', component: ProductComponent },
-    ])
+      {path: '', component: HomeComponent},
+      {path: 'log-in', component: LogInComponent},
+      {path: 'products', component: ProductsComponent},
+      {path: 'products/:productId', component: ProductComponent},
+    ]),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
