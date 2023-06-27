@@ -1,13 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
-root {
+body {
+  font-family: Corbel, sans-serif;
+}
+body {
   --text-color: black;
+  --text-color-light: #1a1a1a;
   --background-color: whitesmoke;
   --hover-color: darkgrey;
+  --some-background: white;
 }
 
-root.dark {
+body.dark {
   --text-color: whitesmoke;
+  --text-color-light: #a9a9a9;
   --background-color: #242424;
-  --hover-color: darkgrey;
+  --hover-color: #545454;
+  --some-background: #313131;
+}
+
+body {
+  background: var(--background-color);
+  padding: 0;
+  margin: 0;
 }
 

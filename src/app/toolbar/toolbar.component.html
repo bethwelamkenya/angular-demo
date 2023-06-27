@@ -1,10 +1,21 @@
 <header>
   <h1>{{title}}</h1>
-  <div>
-    <a><img ngSrc="assets/icons/home.svg" alt="home" height="64" width="64"><span></span></a>
-    <a></a>
-    <a></a>
-    <a></a>
-    <a></a>
+  <div class="toolbar">
+    <form class="search">
+      <input type="text" placeholder="Search Item" required>
+      <img ngSrc="assets/icons/search.svg" alt="search" height="64" width="64">
+    </form>
+    <img src="{{imagePath}}" alt="cart" class="theme" (click)="themeChanged()">
+    <a routerLink="/"><span>Home</span></a>
+    <a routerLink="/products"><span>Products</span></a>
+    <a routerLink="/"><span>Help</span></a>
+    <a><img ngSrc="assets/icons/shopping_cart.svg" height="64" width="64" alt="cart"></a>
+    <div class="profile">
+      <a><img ngSrc="assets/icons/circled_user_male.svg" height="64" width="64" alt="account" (click)="profileClicked()"></a>
+      <div id="account" class="account">
+        <a>User</a>
+        <a routerLink="/log-in">Admin</a>
+      </div>
+    </div>
   </div>
 </header>

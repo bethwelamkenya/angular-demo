@@ -1,0 +1,118 @@
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: fit-content;
+  background: var(--some-background);
+}
+
+h1 {
+  color: var(--text-color);
+}
+
+.toolbar {
+  right: 0;
+  top: 5px;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+}
+
+.theme {
+  transform: rotate(-45deg);
+  height: 35px;
+}
+
+.search {
+  margin-right: 5px;
+  height: 30px;
+  padding: 0 0 5px 5px;
+  border: solid 2px var(--hover-color);
+  border-radius: 15px;
+}
+
+.search input {
+  outline: none;
+  padding-top: 5px;
+  color: var(--text-color-light);
+  font-weight: bold;
+  background: var(--some-background);
+  border: none;
+  font-size: medium;
+}
+
+.search img {
+  height: 25px;
+}
+
+.toolbar a {
+  margin-right: 10px;
+  background: var(--some-background);
+  border-radius: 10px;
+  transition: transform 0.25s ease-in-out;
+  padding: 5px;
+  max-height: 50px;
+  text-decoration: none;
+}
+
+.toolbar a:hover {
+  box-shadow: 0 3px 4px var(--hover-color);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.toolbar a span {
+  color: var(--text-color);
+  font-weight: bold;
+  font-size: large;
+}
+
+.toolbar a img {
+  height: 35px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+}
+.profile a:hover {
+  box-shadow: none;
+  font-weight: bolder;
+  transform: scale(1.2);
+}
+.account {
+  height: 0;
+  background: var(--some-background);
+  transition: height 0.25s ease-in-out;
+}
+
+.account a {
+  height: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
+  color: var(--text-color);
+  font-weight: bold;
+  font-size: 0;
+  transition: height 0.25s ease-in-out, transform 0.15s ease-in-out;
+}
+
+/*.account a:hover {*/
+/*  box-shadow: none;*/
+/*  font-weight: bolder;*/
+/*  transform: scale(1.2);*/
+/*}*/
+
+.account.visible {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.account.visible a {
+  height: fit-content;
+  width: fit-content;
+  margin-top: 10px;
+  padding: 5px;
+  font-size: large;
+}
