@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+root {
+  --text-color: black;
+  --background-color: whitesmoke;
+  --hover-color: darkgrey;
+}
+
+root.dark {
+  --text-color: whitesmoke;
+  --background-color: #242424;
+  --hover-color: darkgrey;
+}
+

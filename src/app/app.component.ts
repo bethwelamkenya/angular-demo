@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {HomeComponent} from "./home/home.component";
 
 @Component({
@@ -7,6 +7,6 @@ import {HomeComponent} from "./home/home.component";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-demo';
-  home = HomeComponent;
+  title = 'e-commerce site';
+   //@Output()  title: EventEmitter<string> = new EventEmitter<string>();
 }
