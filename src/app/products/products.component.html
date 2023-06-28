@@ -1,3 +1,13 @@
 <div>
   <a id="addProduct" routerLink="/add-product" class="add-product">Add Product</a>
+  <ul id="productsList">
+    <li *ngFor="let item of items">
+      <h3>{{ item.name }}</h3>
+      <p>Description: {{ item.description }}</p>
+      <p>Price: {{ item.price | currency }}</p>
+      <p>Stock: {{ item.stock }}</p>
+      <img src="{{ item.imageURL ? item.imageURL : 'assets/icons/image.svg' }}" alt="image">
+<!--      <img [src]="item.imageURL" alt="Image">-->
+    </li>
+  </ul>
 </div>
