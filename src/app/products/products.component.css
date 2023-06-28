@@ -1,0 +1,7 @@
+.add-product {
+  display: none;
+}
+
+.add-product.visible  {
+  display: flex;
+}

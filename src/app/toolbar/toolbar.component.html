@@ -43,8 +43,10 @@
           (click)="profileClicked()"
       /></a>
       <div id="account" class="account">
-        <a>User</a>
-        <a routerLink="/log-in">Admin</a>
+        <a (click)="redirectToLogIn()">{{getText()}}</a>
+        <a (click)="redirectToAdminLogIn()">{{getAdminText()}}</a>
+<!--        <a routerLink="/accounts">{{getText()}}</a>-->
+<!--        <a routerLink="/admins">{{getAdminText()}}</a>-->
       </div>
     </div>
   </div>

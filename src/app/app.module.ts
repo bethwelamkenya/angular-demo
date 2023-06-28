@@ -11,6 +11,9 @@ import { LogInComponent } from './log-in/log-in.component';
 import { ProductsComponent } from './products/products.component';
 import {RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import { AccountsComponent } from './accounts/accounts.component';
+import { AdminsComponent } from './admins/admins.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import {FormsModule} from "@angular/forms";
     ProductComponent,
     ProductItemComponent,
     LogInComponent,
-    ProductsComponent
+    ProductsComponent,
+    AccountsComponent,
+    AdminsComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +36,10 @@ import {FormsModule} from "@angular/forms";
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
       {path: 'log-in', component: LogInComponent},
+      {path: 'accounts', component: AccountsComponent},
+      {path: 'admins', component: AdminsComponent},
       {path: 'products', component: ProductsComponent},
+      {path: 'add-product', component: AddProductComponent},
       {path: 'products/:productId', component: ProductComponent},
     ]),
     FormsModule
