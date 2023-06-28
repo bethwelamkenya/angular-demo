@@ -7,13 +7,14 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import {NgOptimizedImage} from "@angular/common";
 import { ProductComponent } from './product/product.component';
 import { ProductItemComponent } from './product-item/product-item.component';
-import { LogInComponent } from './log-in/log-in.component';
 import { ProductsComponent } from './products/products.component';
 import {RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import { AccountsComponent } from './accounts/accounts.component';
 import { AdminsComponent } from './admins/admins.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { HelpPageComponent } from './help-page/help-page.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +23,12 @@ import { AddProductComponent } from './add-product/add-product.component';
     ToolbarComponent,
     ProductComponent,
     ProductItemComponent,
-    LogInComponent,
     ProductsComponent,
     AccountsComponent,
     AdminsComponent,
-    AddProductComponent
+    AddProductComponent,
+    HelpPageComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -35,9 +37,10 @@ import { AddProductComponent } from './add-product/add-product.component';
     RouterLink,
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
-      {path: 'log-in', component: LogInComponent},
       {path: 'accounts', component: AccountsComponent},
       {path: 'admins', component: AdminsComponent},
+      {path: 'help', component: HelpPageComponent},
+      {path: 'cart', component: CartComponent},
       {path: 'products', component: ProductsComponent},
       {path: 'add-product', component: AddProductComponent},
       {path: 'products/:productId', component: ProductComponent},

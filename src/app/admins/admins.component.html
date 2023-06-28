@@ -1,5 +1,6 @@
-<div>
-  <form (ngSubmit)="login()">
+<div class="forms-div">
+  <form (ngSubmit)="login()" class="active" id="admin-login">
+    <h3>{{validityStatus}}</h3>
     <h2>Log In</h2>
     <label for="user-name-login">User Name</label>
     <input
@@ -20,10 +21,10 @@
       required
     />
     <button type="submit">Log In</button>
-    <p>Don't Have An Account?<span> Register</span></p>
+    <p>Don't Have An Account?<span (click)="toggleDiv()"> Register</span></p>
   </form>
 
-  <form (ngSubmit)="signUp()">
+  <form (ngSubmit)="signUp()" id="admin-register">
     <h2>Sign Up</h2>
     <label for="name-signup"> Name</label>
     <input
@@ -71,6 +72,6 @@
       required
     />
     <button type="submit">Sign Up</button>
-    <p>Already Have An Account?<span> Log In</span></p>
+    <p>Already Have An Account?<span (click)="toggleDiv()"> Log In</span></p>
   </form>
 </div>

@@ -1,0 +1,93 @@
+h1 {
+  font-weight: bold;
+  color: #673AB7;
+  font-size: xx-large;
+}
+
+form {
+  background: var(--some-background);
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  border: none;
+  margin-top: 50px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  padding: 10px;
+  position: absolute;
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+  box-shadow: 0 5px 5px var(--hover-color);
+}
+
+form h2 {
+  font-size: large;
+  font-weight: bold;
+}
+
+label {
+  font-size: medium;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+
+form input {
+  outline: none;
+  background: var(--some-background);
+  border: solid 2px var(--hover-color);
+  border-radius: 10px;
+  font-size: medium;
+  padding: 5px;
+  margin-bottom: 10px;
+  width: 300px;
+}
+
+form textarea {
+  outline: none;
+  background: var(--some-background);
+  border: solid 2px var(--hover-color);
+  border-radius: 10px;
+  font-size: medium;
+  padding: 5px;
+  margin-bottom: 10px;
+  width: 300px;
+}
+
+form button {
+  outline: none;
+  border: none;
+  background: var(--hover-color);
+  font-size: large;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+form span {
+  font-weight: bold;
+  color: #673AB7;
+  font-size: large;
+  transition: color 0.25s ease-in-out;
+}
+
+form span:hover {
+  cursor: pointer;
+  color: #631fdc;
+}
+
+/*.login {*/
+/*  position: absolute;*/
+/*  !*top: 40%;*!*/
+/*  !*right: -50%;*!*/
+/*}*/
+
+/*.login.active {*/
+
+/*}*/
+
+/*.register {*/
+/*  position: absolute;*/
+/*  !*top: 75px;*!*/
+/*}*/
+

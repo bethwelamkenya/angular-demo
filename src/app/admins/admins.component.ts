@@ -15,6 +15,7 @@ export class AdminsComponent {
   email = '';
   phone = 0;
   name = '';
+  validityStatus = '';
 
   constructor(private router: Router) { }
 
@@ -24,6 +25,16 @@ export class AdminsComponent {
 
   signUp() {
     this.insertUser();
+  }
+
+  toggleDiv() {
+    const register = document.getElementById('admin-register');
+    const login = document.getElementById('admin-login');
+
+    // @ts-ignore
+    register.classList.toggle('active');
+    // @ts-ignore
+    login.classList.toggle('active');
   }
 
   checkConnection() {
@@ -41,14 +52,15 @@ export class AdminsComponent {
   checkUser() {
     axios.get(`http://localhost:3000/api/admins/${this.username}?password=${this.password}`)
       .then(response => {
-        console.log('Server is running');
-        alert(response)
+        // console.log('Server is running');
+        // alert(response)
         sessionStorage.setItem('currentAdmin', this.username);
         this.router.navigate(['/']);
       })
       .catch(error => {
         console.error('Failed to ping the server:', error);
-        alert(error)
+        this.validityStatus = "Username or password is incorrect. Please check and try again or REGISTER"
+        // alert(error)
       });
   }
 

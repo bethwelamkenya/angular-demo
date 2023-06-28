@@ -9,13 +9,11 @@ import {Router} from "@angular/router";
 export class HomeComponent {
   constructor(private router: Router) { }
   isLoggedIn = false;
-  profileText = "";
-
   ngOnInit() {
     const currentUser = sessionStorage.getItem('currentUser');
     if (!currentUser) {
       // User is not logged in, redirect to login page or show appropriate message
-      this.router.navigate(['/accounts']);
+      // this.router.navigate(['/accounts']);
       this.isLoggedIn = false;
     } else {
       // User is logged in, continue with component initialization

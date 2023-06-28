@@ -1,15 +1,9 @@
-// var mysql = require('mysql');
 const express = require('express');
 const cors = require('cors');
-const {Request, Response} = require("express");
 const multer = require('multer');
 const port = 3000;
 const mysql = require('mysql2');
 const {readFileSync, readFile} = require("fs");
-const axios = require("axios");
-
-// import express from 'express';
-// import mysql from 'mysql';
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -18,13 +12,6 @@ app.use(express.urlencoded({extended: true}));
 // Configure multer to handle file uploads
 const upload = multer({dest: 'uploads/'});
 
-// Create a MySQL connection pool
-// const pool = mysql.createPool({
-//   host: 'localhost',
-//   user: 'your-username',
-//   password: 'your-password',
-//   database: 'your-database',
-// });
 const dbConfig = {
   host: "localhost",
   port: 3306,
@@ -42,27 +29,20 @@ connection.connect((error) => {
     console.log('Connected to the database');
   }
 });
+
 // Fetch users
 app.get('/api/users', async (req, res) => {
   const query = 'SELECT * FROM users';
-
-  // try {
-  //   const [rows] = await connection.execute('SELECT * FROM users');
-  //   res.json(rows);
-  // } catch (error) {
-  //   console.error('Error executing query:', error);
-  //   res.status(500).json({error: 'Failed to retrieve users'});
-  // }
   connection.query(query, (error, results) => {
     if (error) {
       console.error('Error fetching users:', error);
       res.status(500).json({error: 'Internal server error'});
     } else {
       res.json(results);
-      // res.send(results)
     }
   });
 });
+
 // Fetch users
 app.get('/api/users/:username', (req, res) => {
   const {username} = req.params;
@@ -76,7 +56,6 @@ app.get('/api/users/:username', (req, res) => {
     } else if (results.length === 0) {
       res.status(404).json({error: 'User not found'});
     } else {
-      // console.log(results[0]);
       res.json(results[0]);
     }
   });
@@ -97,28 +76,21 @@ app.post('/api/users', (req, res) => {
     }
   });
 });
-// Fetch users
+
+// Fetch admins
 app.get('/api/admins', async (req, res) => {
   const query = 'SELECT * FROM admins';
-
-  // try {
-  //   const [rows] = await connection.execute('SELECT * FROM users');
-  //   res.json(rows);
-  // } catch (error) {
-  //   console.error('Error executing query:', error);
-  //   res.status(500).json({error: 'Failed to retrieve users'});
-  // }
   connection.query(query, (error, results) => {
     if (error) {
       console.error('Error fetching admins:', error);
       res.status(500).json({error: 'Internal server error'});
     } else {
       res.json(results);
-      // res.send(results)
     }
   });
 });
-// Fetch users
+
+// Fetch admin
 app.get('/api/admins/:username', (req, res) => {
   const {username} = req.params;
   const {password} = req.query;
@@ -137,7 +109,7 @@ app.get('/api/admins/:username', (req, res) => {
   });
 });
 
-// Create user
+// Create admin
 app.post('/api/admins', (req, res) => {
   console.log("called")
   const {name, email, phone, username, password} = req.body;
@@ -153,7 +125,7 @@ app.post('/api/admins', (req, res) => {
   });
 });
 
-// Fetch users
+// Fetch products
 app.get('/api/products', async (req, res) => {
   const query = 'SELECT * FROM products';
   connection.query(query, (error, results) => {
@@ -164,6 +136,7 @@ app.get('/api/products', async (req, res) => {
       let data = [];
       for (let i = 0; i < results.length; i++) {
         let image = results[i].image;
+        const id = results[i].id;
         const name = results[i].name;
         const description = results[i].description;
         const price = results[i].price;
@@ -183,6 +156,7 @@ app.get('/api/products', async (req, res) => {
           url = `data:image/jpeg;base64,${image.toString('base64')}`
         }
         const imageData = {
+          id: id,
           name: name,
           description: description,
           price: price,
@@ -197,7 +171,8 @@ app.get('/api/products', async (req, res) => {
     }
   });
 });
-// Fetch users
+
+// Fetch products
 app.get('/api/products/:id', (req, res) => {
   const {id} = req.params;
   const query = 'SELECT * FROM products where id = ?';
@@ -210,11 +185,13 @@ app.get('/api/products/:id', (req, res) => {
       res.status(404).json({error: 'Product not found'});
     } else {
       const image = results[0].image;
+      const id = results[0].id;
       const name = results[0].name;
       const description = results[0].description;
       const price = results[0].price;
       const stock = results[0].stock;
       const imageData = {
+        id: id,
         name: name,
         description: description,
         price: price,
@@ -229,7 +206,7 @@ app.get('/api/products/:id', (req, res) => {
   });
 });
 
-// Create user
+// Create product
 app.post('/api/products', upload.single('image'), (req, res) => {
   console.log("called")
   const imageFile = req.file;
@@ -252,14 +229,14 @@ app.post('/api/products', upload.single('image'), (req, res) => {
   });
 });
 
+app.get('/ping', (req, res) => {
+  res.send('Server is running');
+});
+
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 
   // Ping the server to check if it's running
   const pingEndpoint = `http://localhost:${port}/ping`;
   console.log(`You can ping the server at: ${pingEndpoint}`);
-});
-
-app.get('/ping', (req, res) => {
-  res.send('Server is running');
 });

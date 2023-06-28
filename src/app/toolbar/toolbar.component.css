@@ -3,6 +3,7 @@ header {
   top: 0;
   width: 100%;
   height: 75px;
+  z-index: 999;
   background: var(--some-background);
 }
 
@@ -12,7 +13,7 @@ h1 {
 
 .toolbar {
   right: 0;
-  top: 5px;
+  top: 15px;
   position: absolute;
   display: flex;
   flex-direction: row;

@@ -1,13 +1,19 @@
 <div>
   <a id="addProduct" routerLink="/add-product" class="add-product">Add Product</a>
-  <ul id="productsList">
+  <ul id="productsList" class="products-list">
     <li *ngFor="let item of items">
-      <h3>{{ item.name }}</h3>
-      <p>Description: {{ item.description }}</p>
-      <p>Price: {{ item.price | currency }}</p>
-      <p>Stock: {{ item.stock }}</p>
-      <img src="{{ item.imageURL ? item.imageURL : 'assets/icons/image.svg' }}" alt="image">
-<!--      <img [src]="item.imageURL" alt="Image">-->
+      <a routerLink="/products/{{item.id}}">
+        <div class="img-container">
+          <img src="{{ item.imageURL ? item.imageURL : 'assets/icons/image.svg' }}" alt="image">
+        </div>
+        <h3 class="name">{{ item.name }}</h3>
+        <p class="description">Description: <span>{{ item.description }}</span></p>
+        <div class="other-prod-details">
+          <p class="price">Price: <span>{{ item.price | currency }}</span></p>
+          <div style="margin-left: 50px;"></div>
+          <p class="stock">Stock: <span>{{ item.stock }}</span></p>
+        </div>
+      </a>
     </li>
   </ul>
 </div>

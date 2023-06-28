@@ -18,6 +18,7 @@ export class AccountsComponent {
   email = '';
   phone = 0;
   name = '';
+  validityStatus = '';
 
   constructor(private router: Router) { }
 
@@ -41,17 +42,28 @@ export class AccountsComponent {
       });
   }
 
+  toggleDiv() {
+    const register = document.getElementById('user-register');
+    const login = document.getElementById('user-login');
+
+    // @ts-ignore
+    register.classList.toggle('active');
+    // @ts-ignore
+    login.classList.toggle('active');
+  }
+
   checkUser() {
     axios.get(`http://localhost:3000/api/users/${this.username}?password=${this.password}`)
       .then(response => {
-        console.log('Server is running');
-        alert(response)
+        // console.log('Server is running');
+        // alert(response)
         sessionStorage.setItem('currentUser', this.username);
         this.router.navigate(['/']);
       })
       .catch(error => {
         console.error('Failed to ping the server:', error);
-        alert(error)
+        this.validityStatus = "Username or password is incorrect. Please check and try again or REGISTER"
+        // alert(error)
       });
   }
 

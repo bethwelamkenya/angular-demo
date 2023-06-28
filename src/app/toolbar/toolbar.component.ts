@@ -2,6 +2,7 @@ import {Component, Input, Renderer2} from '@angular/core';
 import {AppComponent} from '../app.component';
 import {FormBuilder} from '@angular/forms';
 import {Router} from "@angular/router";
+import {SharedServices} from "../shared.services";
 
 
 @Component({
@@ -10,7 +11,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./toolbar.component.css'],
 })
 export class ToolbarComponent {
-  constructor(private router: Router) {
+  constructor(private router: Router, private sharedService: SharedServices) {
   }
 
   @Input() title = '';
@@ -22,9 +23,29 @@ export class ToolbarComponent {
   searchQuery = '';
   body = document.getElementById('mainBody');
   account = document.getElementsByClassName('account');
+  refreshFlag: boolean = false;
+  adminName = '';
+  userName = '';
 
   ngOnInit() {
+    this.getLoggedInStatus()
+    this.sharedService.getRefreshFlag().subscribe(value => {
+      this.refreshFlag = value;// Refresh the content in ngOnInit when the refreshFlag is true
+      if (this.refreshFlag) {
+        this.getLoggedInStatus();
+        this.sharedService.setRefreshFlag(false); // Reset the refreshFlag
+        this.refreshFlag = false;
+        if (this.profileOpen){
+          this.profileClicked()
+        }
+      }
+    });
+  }
+
+  getLoggedInStatus() {
     const currentUser = sessionStorage.getItem('currentUser');
+    // @ts-ignore
+    this.userName = currentUser;
     if (!currentUser) {
       // User is not logged in, redirect to login page or show appropriate message
       // this.router.navigate(['/accounts']);
@@ -36,6 +57,8 @@ export class ToolbarComponent {
       // ...
     }
     const currentAdmin = sessionStorage.getItem('currentAdmin');
+    // @ts-ignore
+    this.adminName = currentAdmin;
     if (!currentAdmin) {
       // User is not logged in, redirect to login page or show appropriate message
       // this.router.navigate(['/accounts']);
@@ -52,6 +75,7 @@ export class ToolbarComponent {
     if (this.isLoggedIn) {
       sessionStorage.removeItem('currentUser')
       this.isLoggedIn = false
+      this.userName = ''
     } else {
       this.router.navigate(['/accounts']);
     }
@@ -61,6 +85,7 @@ export class ToolbarComponent {
     if (this.isAdminLoggedIn) {
       sessionStorage.removeItem('currentAdmin')
       this.isAdminLoggedIn = false
+      this.adminName = ''
     } else {
       this.router.navigate(['/admins']);
     }
@@ -69,17 +94,17 @@ export class ToolbarComponent {
 
   getText(): string {
     if (this.isLoggedIn) {
-      return "User: Log Out"
+      return "Log Out"
     } else {
-      return "User: Log In"
+      return "Log In"
     }
   }
 
   getAdminText(): string {
     if (this.isAdminLoggedIn) {
-      return "Admin: Log Out"
+      return "Log Out"
     } else {
-      return "Admin: Log In"
+      return "Log In"
     }
   }
 
