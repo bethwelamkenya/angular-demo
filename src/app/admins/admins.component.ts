@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import axios from "axios";
 import {Router} from "@angular/router";
 
@@ -17,7 +17,8 @@ export class AdminsComponent {
   name = '';
   validityStatus = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+  }
 
   login() {
     this.checkUser();
@@ -27,6 +28,7 @@ export class AdminsComponent {
     this.insertUser();
   }
 
+  // handle clicking of register or log in to show/ hide their forms
   toggleDiv() {
     const register = document.getElementById('admin-register');
     const login = document.getElementById('admin-login');
@@ -37,6 +39,7 @@ export class AdminsComponent {
     login.classList.toggle('active');
   }
 
+  // check connection to server
   checkConnection() {
     axios.get('http://localhost:3000/ping')
       .then(response => {
@@ -50,20 +53,20 @@ export class AdminsComponent {
   }
 
   checkUser() {
+    // check whether user details are correct
     axios.get(`http://localhost:3000/api/admins/${this.username}?password=${this.password}`)
       .then(response => {
-        // console.log('Server is running');
-        // alert(response)
+        // set the user session
         sessionStorage.setItem('currentAdmin', this.username);
         this.router.navigate(['/']);
       })
       .catch(error => {
         console.error('Failed to ping the server:', error);
         this.validityStatus = "Username or password is incorrect. Please check and try again or REGISTER"
-        // alert(error)
       });
   }
 
+  // register user details
   insertUser() {
     let data = {
       name: this.name,
@@ -76,14 +79,12 @@ export class AdminsComponent {
 
     axios.post('http://localhost:3000/api/admins', data)
       .then(response => {
-        console.log('Server is running');
-        alert(response)
+        // set the user session
         sessionStorage.setItem('currentAdmin', this.username_signup);
         this.router.navigate(['/']);
       })
       .catch(error => {
         console.error('Failed to ping the server:', error);
-        alert(error)
       });
   }
 

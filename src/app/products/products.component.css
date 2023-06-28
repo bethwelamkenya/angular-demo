@@ -11,8 +11,8 @@
 
 .products-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Adjust the minimum width as needed */
-  grid-gap: 10px; /* Adjust the gap between items as needed */
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  /*grid-gap: 10px;*/
   list-style: none;
   padding: 0;
 }

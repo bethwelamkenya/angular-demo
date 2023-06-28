@@ -200,8 +200,6 @@ app.get('/api/products/:id', (req, res) => {
       };
 
       res.json(imageData);
-
-      // console.log(imageData)
     }
   });
 });
@@ -209,6 +207,7 @@ app.get('/api/products/:id', (req, res) => {
 // Create product
 app.post('/api/products', upload.single('image'), (req, res) => {
   console.log("called")
+  // get the sent file
   const imageFile = req.file;
   if (!imageFile) {
     res.status(400).send('No image file received');
@@ -233,6 +232,7 @@ app.get('/ping', (req, res) => {
   res.send('Server is running');
 });
 
+// start the server
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 

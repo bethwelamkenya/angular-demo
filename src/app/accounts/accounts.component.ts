@@ -1,5 +1,4 @@
-import {Component, Injector} from '@angular/core';
-import {HttpBackend, HttpClient, HttpParams} from "@angular/common/http";
+import {Component} from '@angular/core';
 import axios from "axios";
 import {Router} from "@angular/router";
 
@@ -20,7 +19,8 @@ export class AccountsComponent {
   name = '';
   validityStatus = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+  }
 
   login() {
     this.checkUser();
@@ -30,6 +30,7 @@ export class AccountsComponent {
     this.insertUser();
   }
 
+  // check connection to server side
   checkConnection() {
     axios.get('http://localhost:3000/ping')
       .then(response => {
@@ -52,21 +53,20 @@ export class AccountsComponent {
     login.classList.toggle('active');
   }
 
+  // check user details validity from server side
   checkUser() {
     axios.get(`http://localhost:3000/api/users/${this.username}?password=${this.password}`)
       .then(response => {
-        // console.log('Server is running');
-        // alert(response)
         sessionStorage.setItem('currentUser', this.username);
         this.router.navigate(['/']);
       })
       .catch(error => {
         console.error('Failed to ping the server:', error);
         this.validityStatus = "Username or password is incorrect. Please check and try again or REGISTER"
-        // alert(error)
       });
   }
 
+  // send user data for registration in the server side
   insertUser() {
     let data = {
       name: this.name,
@@ -79,8 +79,6 @@ export class AccountsComponent {
 
     axios.post('http://localhost:3000/api/users', data)
       .then(response => {
-        console.log('Server is running');
-        alert(response)
         sessionStorage.setItem('currentUser', this.username_signup);
         this.router.navigate(['/']);
       })

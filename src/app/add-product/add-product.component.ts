@@ -17,32 +17,27 @@ export class AddProductComponent {
   description = "";
   price = 0;
   stock = 0;
-
   isAdminLoggedIn = false;
   // @ts-ignore
   @ViewChild('fileInput') fileInput: ElementRef<HTMLInputElement>;
 
   ngOnInit() {
+    // get the current user
     const currentAdmin = sessionStorage.getItem('currentAdmin');
     if (!currentAdmin) {
-      // User is not logged in, redirect to login page or show appropriate message
+      // User is not logged in, redirect to login page
       this.router.navigate(['/admins']);
       this.isAdminLoggedIn = false;
     } else {
       // User is logged in, continue with component initialization
-      console.log(currentAdmin)
       this.isAdminLoggedIn = true;
-      // ...
     }
   }
 
   addProduct() {
-    console.log("submitted")
+    // get the selected file
     // @ts-ignore
-    var file: File = this.fileInput.nativeElement.files.item(0)
-//     const image = fs.readFileSync(file.webkitRelativePath);
-// // Convert to binary format
-//     const imageData = Buffer.from(image);
+    const file: File = this.fileInput.nativeElement.files.item(0);
 
     // Read the file
     const reader = new FileReader();
@@ -61,11 +56,9 @@ export class AddProductComponent {
       formData.append('image', new Blob([imageData]));
 
       // Send the image data to the server for insertion into MySQL
-
-      console.log("Submiting")
       axios.post('http://localhost:3000/api/products', formData)
         .then(response => {
-          console.log('Image inserted successfully');
+          // if successful, clear the form data
           this.prodStatus = "Product Inserted Successfully";
           this.name = "";
           this.description = "";
@@ -75,7 +68,7 @@ export class AddProductComponent {
         })
         .catch(error => {
           console.error('Error inserting data:', error);
-          alert(error)
+          this.prodStatus = "Error Adding The Product"
         });
     };
     reader.readAsArrayBuffer(file);

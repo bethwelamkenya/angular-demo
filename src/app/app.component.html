@@ -1,7 +1,10 @@
 <div class="main-body">
+<!--  toolbar that will be common in all pages/ routes-->
   <app-toolbar [title]="title"></app-toolbar>
-<!--  <app-home></app-home>-->
 
+<!--  since toolbar is fixed, this div will take the space left by the toolbar-->
   <div style="margin-top: 75px;"></div>
+
+<!--  component for routing-->
   <router-outlet style="height: 100%;"></router-outlet>
 </div>

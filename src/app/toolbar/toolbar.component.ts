@@ -1,6 +1,4 @@
-import {Component, Input, Renderer2} from '@angular/core';
-import {AppComponent} from '../app.component';
-import {FormBuilder} from '@angular/forms';
+import {Component, Input} from '@angular/core';
 import {Router} from "@angular/router";
 import {SharedServices} from "../shared.services";
 
@@ -28,7 +26,9 @@ export class ToolbarComponent {
   userName = '';
 
   ngOnInit() {
+    this.getTheme()
     this.getLoggedInStatus()
+    // refresh content when routes change
     this.sharedService.getRefreshFlag().subscribe(value => {
       this.refreshFlag = value;// Refresh the content in ngOnInit when the refreshFlag is true
       if (this.refreshFlag) {
@@ -42,7 +42,21 @@ export class ToolbarComponent {
     });
   }
 
+  // get stored theme and change theme accordingly
+  getTheme() {
+    if (sessionStorage.getItem('theme') == 'dark'){
+      this.imagePath = 'assets/icons/moon_symbol.svg';
+      // @ts-ignore
+      this.body.classList.add('dark');
+    } else {
+      this.imagePath = 'assets/icons/sun.svg';
+      // @ts-ignore
+      this.body.classList.remove('dark');
+    }
+  }
+
   getLoggedInStatus() {
+    // get the current stores user in session
     const currentUser = sessionStorage.getItem('currentUser');
     // @ts-ignore
     this.userName = currentUser;
@@ -54,7 +68,6 @@ export class ToolbarComponent {
       // User is logged in, continue with component initialization
       console.log(currentUser)
       this.isLoggedIn = true;
-      // ...
     }
     const currentAdmin = sessionStorage.getItem('currentAdmin');
     // @ts-ignore
@@ -67,10 +80,10 @@ export class ToolbarComponent {
       // User is logged in, continue with component initialization
       console.log(currentAdmin)
       this.isAdminLoggedIn = true;
-      // ...
     }
   }
 
+  // handle user account click
   redirectToLogIn() {
     if (this.isLoggedIn) {
       sessionStorage.removeItem('currentUser')
@@ -81,6 +94,7 @@ export class ToolbarComponent {
     }
   }
 
+  // handle admin account click
   redirectToAdminLogIn() {
     if (this.isAdminLoggedIn) {
       sessionStorage.removeItem('currentAdmin')
@@ -108,19 +122,23 @@ export class ToolbarComponent {
     }
   }
 
+  // handle changing of themes
   themeChanged() {
     this.darkMode = !this.darkMode;
     if (this.darkMode) {
       this.imagePath = 'assets/icons/moon_symbol.svg';
       // @ts-ignore
       this.body.classList.add('dark');
+      sessionStorage.setItem('theme', 'dark')
     } else {
       this.imagePath = 'assets/icons/sun.svg';
       // @ts-ignore
       this.body.classList.remove('dark');
+      sessionStorage.setItem('theme', 'light')
     }
   }
 
+  // handle clicking of the profile icon
   profileClicked() {
     this.profileOpen = !this.profileOpen;
     for (let i = 0; i < this.account.length; i++) {

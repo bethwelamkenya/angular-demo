@@ -27,20 +27,20 @@
     <a routerLink="/products"><span>Products</span></a>
     <a routerLink="/help"><span>Help</span></a>
     <a routerLink="/cart"
-      ><img
-        ngSrc="assets/icons/shopping_cart.svg"
-        height="64"
-        width="64"
-        alt="cart"
+    ><img
+      ngSrc="assets/icons/shopping_cart.svg"
+      height="64"
+      width="64"
+      alt="cart"
     /></a>
     <div class="profile">
       <a
-        ><img
-          ngSrc="assets/icons/circled_user_male.svg"
-          height="64"
-          width="64"
-          alt="account"
-          (click)="profileClicked()"
+      ><img
+        ngSrc="assets/icons/circled_user_male.svg"
+        height="64"
+        width="64"
+        alt="account"
+        (click)="profileClicked()"
       /></a>
       <div id="account" class="account">
         <a (click)="redirectToLogIn()">User {{userName}}: {{getText()}}</a>
