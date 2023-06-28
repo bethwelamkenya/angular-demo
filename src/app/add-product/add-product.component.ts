@@ -64,7 +64,6 @@ export class AddProductComponent {
           this.description = "";
           this.price = 0;
           this.stock = 0;
-          alert(response)
         })
         .catch(error => {
           console.error('Error inserting data:', error);
