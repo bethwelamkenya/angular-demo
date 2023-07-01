@@ -41,6 +41,7 @@ export class AdminsComponent {
 
   // check connection to server
   checkConnection() {
+    // axios.get('http://10.130.14.162:3000/ping')
     axios.get('http://localhost:3000/ping')
       .then(response => {
         console.log('Server is running');
@@ -54,6 +55,7 @@ export class AdminsComponent {
 
   checkUser() {
     // check whether user details are correct
+    // axios.get(`http://10.130.14.162:3000/api/admins/${this.username}?password=${this.password}`)
     axios.get(`http://localhost:3000/api/admins/${this.username}?password=${this.password}`)
       .then(response => {
         // set the user session
@@ -77,6 +79,7 @@ export class AdminsComponent {
     };
     console.log("hello", data)
 
+    // axios.post('http://10.130.14.162:3000/api/admins', data)
     axios.post('http://localhost:3000/api/admins', data)
       .then(response => {
         // set the user session

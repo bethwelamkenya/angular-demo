@@ -1,5 +1,6 @@
-<div>
+<div class="product-body">
   <div class="details-container">
+    <h2>{{cartStatus}}</h2>
     <div class="img-container">
       <img src="{{ imageUrl ? imageUrl : 'assets/icons/image.svg' }}" alt="image">
     </div>
@@ -10,5 +11,13 @@
       <div style="margin-left: 50px;"></div>
       <p class="stock">Stock: <span>{{ stock }}</span></p>
     </div>
+  </div>
+  <div class="cartQuantity">
+    <div class="cart_number">
+      <img src="assets/icons/minus_math.svg" alt="remove" (click)="lessQuantity()">
+      <p>{{quantity}}</p>
+      <img src="assets/icons/plus_math.svg" alt="add" (click)="addQuantity()">
+    </div>
+    <button (click)="addToCart()">Add To Cart</button>
   </div>
 </div>

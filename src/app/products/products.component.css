@@ -46,7 +46,7 @@
 
 .products-list h3 {
   font-weight: bolder;
-  font-size: xxx-large;
+  font-size: large;
   margin: 0 0 20px;
 }
 
@@ -55,7 +55,7 @@
   width: 300px;
   border: none;
   border-radius: 20px;
-  box-shadow: 0 5px 5px var(--hover-color);
+  box-shadow: 0 5px 15px var(--hover-color);
   margin: 0 0 20px;
   padding: 0;
   overflow: hidden;

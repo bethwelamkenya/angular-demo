@@ -32,6 +32,7 @@ export class AccountsComponent {
 
   // check connection to server side
   checkConnection() {
+    // axios.get('http://10.130.14.162:3000/ping')
     axios.get('http://localhost:3000/ping')
       .then(response => {
         console.log('Server is running');
@@ -55,6 +56,7 @@ export class AccountsComponent {
 
   // check user details validity from server side
   checkUser() {
+    // axios.get(`http://10.130.14.162:3000/api/users/${this.username}?password=${this.password}`)
     axios.get(`http://localhost:3000/api/users/${this.username}?password=${this.password}`)
       .then(response => {
         sessionStorage.setItem('currentUser', this.username);
@@ -77,6 +79,7 @@ export class AccountsComponent {
     };
     console.log("hello", data)
 
+    // axios.post('http://10.130.14.162:3000/api/users', data)
     axios.post('http://localhost:3000/api/users', data)
       .then(response => {
         sessionStorage.setItem('currentUser', this.username_signup);

@@ -16,11 +16,14 @@ export class ToolbarComponent {
   imagePath = 'assets/icons/sun.svg';
   darkMode = false;
   profileOpen = false;
+  toolbarOpen = false;
   isLoggedIn = false;
   isAdminLoggedIn = false;
   searchQuery = '';
   body = document.getElementById('mainBody');
   account = document.getElementsByClassName('account');
+  toolbar = document.getElementsByClassName('toolbar');
+  menuImg = document.getElementsByClassName('menu-img');
   refreshFlag: boolean = false;
   adminName = '';
   userName = '';
@@ -35,8 +38,11 @@ export class ToolbarComponent {
         this.getLoggedInStatus();
         this.sharedService.setRefreshFlag(false); // Reset the refreshFlag
         this.refreshFlag = false;
-        if (this.profileOpen){
+        if (this.profileOpen) {
           this.profileClicked()
+        }
+        if (this.toolbarOpen){
+          this.openCloseToolBar()
         }
       }
     });
@@ -44,7 +50,7 @@ export class ToolbarComponent {
 
   // get stored theme and change theme accordingly
   getTheme() {
-    if (sessionStorage.getItem('theme') == 'dark'){
+    if (sessionStorage.getItem('theme') == 'dark') {
       this.imagePath = 'assets/icons/moon_symbol.svg';
       // @ts-ignore
       this.body.classList.add('dark');
@@ -52,6 +58,13 @@ export class ToolbarComponent {
       this.imagePath = 'assets/icons/sun.svg';
       // @ts-ignore
       this.body.classList.remove('dark');
+    }
+  }
+
+  openCloseToolBar() {
+    this.toolbarOpen = !this.toolbarOpen
+    for (let i = 0; i < this.toolbar.length; i++) {
+      this.toolbar[i].classList.toggle('visible');
     }
   }
 
@@ -78,7 +91,7 @@ export class ToolbarComponent {
       this.isAdminLoggedIn = false;
     } else {
       // User is logged in, continue with component initialization
-      console.log(currentAdmin)
+      // console.log(currentAdmin)
       this.isAdminLoggedIn = true;
     }
   }

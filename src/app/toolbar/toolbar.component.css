@@ -9,6 +9,7 @@ header {
 
 h1 {
   color: var(--text-color);
+  transform: translateX(20%);
 }
 
 .toolbar {
@@ -112,4 +113,62 @@ h1 {
   margin-top: 10px;
   padding: 5px;
   font-size: large;
+}
+
+.menu-img {
+  display: none;
+  height: 35px;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+}
+
+@media screen and (max-width: 500px){
+  .toolbar {
+    display: none;
+    margin-top: 35px;
+    width: 300px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 5px var(--hover-color);
+    background-color: var(--some-background);
+  }
+
+  .toolbar .profile.visible {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-content: center;
+  }
+
+  .toolbar form {
+    margin: 15px;
+  }
+
+  .toolbar form input {
+    background-color: #00000000;
+  }
+
+  .toolbar img {
+    margin-bottom: 10px;
+  }
+
+  .toolbar form img {
+    display: none;
+  }
+
+  .toolbar a {
+    margin-bottom: 10px;
+  }
+
+  .menu-img {
+    display: flex;
+  }
+
+  .toolbar.visible {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }

@@ -8,7 +8,7 @@ import {SharedServices} from "./shared.services";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'e-commerce site';
+  title = 'Shopaholic';
   theme = '';
   body = document.getElementById('mainBody');
 

@@ -1,1 +1,27 @@
-<p>cart works!</p>
+<div class="the-body">
+  <h1>Cart</h1>
+  <ul id="productsList" class="products-list">
+    <li *ngFor="let item of productCartItems">
+      <a routerLink="/products/{{item.id}}">
+        <div class="img-container">
+          <img src="{{ item.imageURL ? item.imageURL : 'assets/icons/image.svg' }}" alt="image">
+        </div>
+        <h3 class="name">{{ item.name }}</h3>
+        <p class="description">Description: <span>{{ item.description }}</span></p>
+        <div class="other-prod-details">
+          <p class="price">Price: <span>{{ item.price | currency }}</span></p>
+          <div style="margin-left: 50px;"></div>
+          <p class="stock">Stock: <span>{{ item.stock }}</span></p>
+        </div>
+        <p class="quantity">Quantity: <span>{{getProductQuantity(item.id)}}</span></p>
+      </a>
+    </li>
+  </ul>
+
+  <h2>Total: <span>{{getTotal()}}</span></h2>
+
+  <button (click)="checkOut()">CheckOut</button>
+
+  <h1>{{cartStatus}}</h1>
+
+</div>

@@ -26,3 +26,13 @@ body {
   transition: background-color 0.25s ease-in-out;
 }
 
+button {
+  outline: none;
+  border: none;
+  background: var(--hover-color);
+  font-size: large;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+

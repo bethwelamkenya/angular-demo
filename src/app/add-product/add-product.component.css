@@ -21,6 +21,12 @@ form {
   box-shadow: 0 5px 5px var(--hover-color);
 }
 
+@media screen and (max-width: 500px) {
+  form {
+    transform: translateX(10%);
+  }
+}
+
 form h2 {
   font-size: large;
   font-weight: bold;

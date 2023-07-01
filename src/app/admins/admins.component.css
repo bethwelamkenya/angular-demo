@@ -27,6 +27,12 @@ form {
   transform: translateX(150%);
 }
 
+@media screen and (max-width: 500px) {
+  form {
+    transform: translateX(10%);
+  }
+}
+
 form h2 {
   font-size: large;
   font-weight: bold;

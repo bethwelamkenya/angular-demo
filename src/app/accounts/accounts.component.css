@@ -27,6 +27,12 @@ form {
   transform: translateX(150%);
 }
 
+@media screen and (max-width: 500px) {
+  form {
+    transform: translateX(10%);
+  }
+}
+
 form h2 {
   font-size: large;
   font-weight: bold;
@@ -76,19 +82,3 @@ h3 {
   color: #673AB7;
   font-size: large;
 }
-
-/*.login {*/
-/*  position: absolute;*/
-/*  !*top: 40%;*!*/
-/*  !*right: -50%;*!*/
-/*}*/
-
-/*.login.active {*/
-
-/*}*/
-
-/*.register {*/
-/*  position: absolute;*/
-/*  !*top: 75px;*!*/
-/*}*/
-

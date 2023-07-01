@@ -40,6 +40,7 @@ export class ProductsComponent {
 
   // get the products from the server side
   getProducts() {
+    // axios.get('http://10.130.14.162:3000/api/products')
     axios.get('http://localhost:3000/api/products')
       .then(results => {
         this.items = results.data

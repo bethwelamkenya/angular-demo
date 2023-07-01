@@ -3,10 +3,10 @@
   <form (ngSubmit)="addProduct()">
     <h3>Add Product</h3>
     <label for="name">Name</label>
-    <input type="text" [(ngModel)]="name" name="name" id="name" placeholder="Product Name" required>
+    <input type="text" [(ngModel)]="name" name="name" id="name" placeholder="Product Name" required maxlength="100">
     <label for="description">Name</label>
     <textarea name="description" [(ngModel)]="description" id="description"
-              placeholder="Product Description"></textarea>
+              placeholder="Product Description" maxlength="2000"></textarea>
     <label for="image">Product Image</label>
     <input type="file" accept=".png, .jpg, .jpeg" #fileInput name="image" id="image" required>
     <label for="price">Product Price</label>

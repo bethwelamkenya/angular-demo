@@ -56,6 +56,7 @@ export class AddProductComponent {
       formData.append('image', new Blob([imageData]));
 
       // Send the image data to the server for insertion into MySQL
+      // axios.post('http://10.130.14.162:3000/api/products', formData)
       axios.post('http://localhost:3000/api/products', formData)
         .then(response => {
           // if successful, clear the form data
